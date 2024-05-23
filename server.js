@@ -27,7 +27,7 @@ app.post('/ask-question', async (req, res) => {
             }
         });
 
-        const answer = response.data.choices[0].text.trim();
+        const answer = response.data.choices[0].text;
         console.log(`Answer: ${answer}`);
         res.json({ answer: answer });
     } catch (error) {
