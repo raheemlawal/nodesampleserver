@@ -8,10 +8,6 @@ const port = 3000;
 
 app.use(bodyParser.json());
 
-app.get('/', (req, res) => {
-    res.send('Hello World!')
-})
-
 app.post('/ask-question', async (req, res) => {
     const { question, runningData } = req.body;
 
@@ -25,15 +21,16 @@ app.post('/ask-question', async (req, res) => {
             max_tokens: 150
         }, {
             headers: {
-                'Authorization': `Bearer ${process.env.ABC}`
+                'Authorization': `Bearer ${ABC}`
             }
         });
 
-        //res.json({ answer: response.data.choices[0].text.trim() });
-        res.json({answer: "raheem"})
+        const answer = response.data.choices[0].text.trim();
+        console.log(`Answer: ${answer}`);
+        res.json({ answer: answer });
     } catch (error) {
         console.error(error);
-        res.status(500).send('Error processing the question');
+        res.status(500).json({ error: 'Error processing the question' });
     }
 });
 
