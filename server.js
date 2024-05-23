@@ -29,7 +29,7 @@ app.post('/ask-question', async (req, res) => {
         console.log(`Answer: ${answer}`);
         res.json({ answer: answer });
     } catch (error) {
-        console.error(error);
+        console.error(error.response.data);
         res.status(500).json({ error: 'Error processing the question' });
     }
 });
