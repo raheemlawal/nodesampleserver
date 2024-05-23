@@ -17,7 +17,7 @@ app.post('/ask-question', async (req, res) => {
     try {
         const response = await axios.post('https://api.openai.com/v1/chat/completions', {
             messages: [
-                { role: 'system', content: 'You are a running stats data analyst' },
+                { role: 'system', content: 'You are a helpful assistant' },
                 { role: 'user', content: prompt }
             ],    
             model: 'gpt-4',
@@ -31,6 +31,9 @@ app.post('/ask-question', async (req, res) => {
         console.log(`Answer: ${answer}`);
         res.json({ answer: answer });
     } catch (error) {
+        console.error(error);
+        console.error(error.response);
+        console.error(error.response.data);
         res.status(500).json({ error: 'Error processing the question' });
     }
 });
