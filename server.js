@@ -17,7 +17,7 @@ app.post('/ask-question', async (req, res) => {
     try {
         const response = await axios.post('https://api.openai.com/v1/chat/completions', {
             messages: [
-                { role: 'system', content: 'You are a helpful assistant' },
+                { role: 'system', content: 'You are a helpful assistant. The distances in the data set are in miles.' },
                 { role: 'user', content: prompt }
             ],    
             model: 'gpt-4',
@@ -27,7 +27,7 @@ app.post('/ask-question', async (req, res) => {
             }
         });
 
-        const answer = response.data.choices[0];
+        const answer = response.data.choices[0].message.content;
         console.log(`Answer: ${answer}`);
         res.json({ answer: answer });
     } catch (error) {
