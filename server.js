@@ -29,7 +29,8 @@ app.post('/ask-question', async (req, res) => {
             }
         });
 
-        res.json({ answer: response.data.choices[0].text.trim() });
+        //res.json({ answer: response.data.choices[0].text.trim() });
+        res.json({answer: "raheem"})
     } catch (error) {
         console.error(error);
         res.status(500).send('Error processing the question');
