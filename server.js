@@ -15,12 +15,12 @@ app.post('/ask-question', async (req, res) => {
     const prompt = `Question: ${question}\nRunning Data: ${JSON.stringify(runningData)}\nAnswer:`;
 
     try {
-        const response = await axios.post('https://api.openai.com/v1/completions', {
-            model: 'gpt-4',
+        const response = await axios.post('https://api.openai.com/v1/chat/completions', {
             messages: [
-                { role: 'system', content: 'You are a helpful assistant.' },
+                { role: 'system', content: 'You are a running stats data analyst' },
                 { role: 'user', content: prompt }
-            ],
+            ],    
+            model: 'gpt-4',
         }, {
             headers: {
                 'Authorization': `Bearer ${process.env.ABC}`
