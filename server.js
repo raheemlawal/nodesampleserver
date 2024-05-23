@@ -21,7 +21,7 @@ app.post('/ask-question', async (req, res) => {
             max_tokens: 150
         }, {
             headers: {
-                'Authorization': `Bearer ${ABC}`
+                'Authorization': `Bearer ${process.env.ABC}`
             }
         });
 
