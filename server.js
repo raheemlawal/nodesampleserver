@@ -27,6 +27,8 @@ app.post('/ask-question', async (req, res) => {
             }
         });
 
+        console.log(runningData)
+        
         const answer = response.data.choices[0].message.content;
         console.log(`Answer: ${answer}`);
         res.json({ answer: answer });
